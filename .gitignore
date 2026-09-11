@@ -1,0 +1,9 @@
+/build/
+/dist/
+/artifacts/
+*.log
+*.obj
+*.pdb
+*.ilk
+*.dll
+/package/backups/
