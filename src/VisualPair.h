@@ -1,7 +1,7 @@
 #pragma once
 #include <stdint.h>
 
-namespace OctoEnchant {
+namespace EnchantVisuals {
 constexpr uint32_t Marker = 0x40000000;
 inline uint32_t ShamanCode(uint32_t visual) {
     switch (visual) {

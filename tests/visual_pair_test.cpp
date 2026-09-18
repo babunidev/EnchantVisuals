@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include <initializer_list>
 int main() {
-    using namespace OctoEnchant;
+    using namespace EnchantVisuals;
     uint32_t p = 0, t = 0;
     for (uint32_t visual : {61u, 32u, 81u, 33u}) {
         int combined = Combine(2, 2, visual);

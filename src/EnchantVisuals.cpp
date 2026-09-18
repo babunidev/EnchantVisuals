@@ -14,7 +14,7 @@ static SelectFn originalItem = nullptr;
 static SelectFn originalVisible = nullptr;
 static RenderFn originalRender = nullptr;
 static HMODULE moduleHandle;
-#ifdef OCTO_DIAGNOSTIC
+#ifdef ENCHANT_DIAGNOSTIC
 static volatile LONG traceSequence=0;
 static __declspec(thread) unsigned renderDepth=0;
 static bool DiagnosticHooksRequested() {
@@ -22,7 +22,7 @@ static bool DiagnosticHooksRequested() {
     DWORD length=GetModuleFileNameA(moduleHandle,path,MAX_PATH);
     if(!length || length>=MAX_PATH) return false;
     char* slash=strrchr(path,'\\');
-    if(!slash || strcpy_s(slash+1,MAX_PATH-static_cast<size_t>(slash+1-path),"OctoEnchantVisualsDiagnostic.ini")) return false;
+    if(!slash || strcpy_s(slash+1,MAX_PATH-static_cast<size_t>(slash+1-path),"EnchantVisualsDiagnostic.ini")) return false;
     return GetPrivateProfileIntA("Diagnostic","EnableHooks",0,path)==1;
 }
 #endif
@@ -34,10 +34,10 @@ static void Log(const char* message) {
     char* slash = strrchr(path, '\\');
     if (!slash) return;
     size_t remaining = MAX_PATH - static_cast<size_t>(slash + 1 - path);
-#ifdef OCTO_DIAGNOSTIC
-    if (strcpy_s(slash + 1, remaining, "OctoEnchantVisualsDiagnostic.log")) return;
+#ifdef ENCHANT_DIAGNOSTIC
+    if (strcpy_s(slash + 1, remaining, "EnchantVisualsDiagnostic.log")) return;
 #else
-    if (strcpy_s(slash + 1, remaining, "OctoEnchantVisuals.log")) return;
+    if (strcpy_s(slash + 1, remaining, "EnchantVisuals.log")) return;
 #endif
     FILE* file = nullptr;
     if (!fopen_s(&file, path, "a") && file) {
@@ -47,7 +47,7 @@ static void Log(const char* message) {
 }
 
 static void Trace(const char* stage, const void* object, int value) {
-#ifdef OCTO_DIAGNOSTIC
+#ifdef ENCHANT_DIAGNOSTIC
     LONG sequence=InterlockedIncrement(&traceSequence);
     if(sequence>20000) return;
     char line[256];
@@ -76,7 +76,7 @@ static bool ValidVisual(uint32_t visual) {
 static int Pair(int selected, uint32_t permanentID, uint32_t temporaryID) {
     uint32_t permanent = Visual(permanentID), temporary = Visual(temporaryID);
     if (!ValidVisual(permanent) || !ValidVisual(temporary)) return selected;
-    return OctoEnchant::Combine(selected, permanent, temporary);
+    return EnchantVisuals::Combine(selected, permanent, temporary);
 }
 
 static int __fastcall SelectItem(void* item, void*) {
@@ -121,15 +121,15 @@ __declspec(naked) static void __fastcall AppendVisual(void*, int) {
 }
 
 static void __fastcall Render(void* model, int visual) {
-#ifdef OCTO_DIAGNOSTIC
+#ifdef ENCHANT_DIAGNOSTIC
     ++renderDepth;
 #endif
     Trace("render-enter",model,visual);
     uint32_t permanent = 0, temporary = 0;
-    if (!OctoEnchant::Decode(visual, permanent, temporary)) {
+    if (!EnchantVisuals::Decode(visual, permanent, temporary)) {
         originalRender(model, visual);
         Trace("render-normal-exit",model,visual);
-#ifdef OCTO_DIAGNOSTIC
+#ifdef ENCHANT_DIAGNOSTIC
         --renderDepth;
 #endif
         return;
@@ -140,7 +140,7 @@ static void __fastcall Render(void* model, int visual) {
     Trace("append-enter",model,static_cast<int>(temporary));
     AppendVisual(model, static_cast<int>(temporary));
     Trace("append-exit",model,static_cast<int>(temporary));
-#ifdef OCTO_DIAGNOSTIC
+#ifdef ENCHANT_DIAGNOSTIC
     --renderDepth;
 #endif
 }
@@ -196,7 +196,7 @@ static bool Install() {
 BOOL WINAPI DllMain(HINSTANCE instance, DWORD reason, LPVOID) {
     if (reason == DLL_PROCESS_ATTACH) {
         moduleHandle = instance;
-#ifdef OCTO_DIAGNOSTIC
+#ifdef ENCHANT_DIAGNOSTIC
         Trace("diagnostic-process-start",instance,0);
         if(!DiagnosticHooksRequested()) {
             Log("CONTROL ONLY: no client hooks installed; visual behavior unchanged.");
