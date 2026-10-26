@@ -98,3 +98,11 @@ The release download contains the renamed rebuild. Rebuilds may have different c
 Original mod code is MIT licensed; see [LICENSE](LICENSE). [MinHook](https://github.com/TsudaKageyu/minhook) retains its [BSD license](vendor/minhook-1.3.4/LICENSE.txt).
 
 Screenshots depict World of Warcraft; game artwork belongs to its respective owners. This is an independent community project.
+
+## Development documentation
+
+- [Concept](CONCEPT.md) · [Roadmap](ROADMAP.md) · [Changelog](CHANGELOG.md)
+- [Architecture](docs/ARCHITECTURE.md) · [Design evidence](docs/DECISIONS.md) · [Development journal](docs/DEVLOG.md)
+- [AI collaborator rules](AGENTS.md)
+
+The journal distinguishes source-based reconstruction, author direction, AI assistance, and independently verified behavior.
