@@ -1,5 +1,7 @@
 # Enchant Visuals
 
+**Author:** Babuni.dev
+
 Keep your permanent weapon enchant glow **and** your shaman imbue visible at the same time.
 
 A small cosmetic client mod for the supported **World of Warcraft 1.12.1 executable**, supporting Rockbiter, Flametongue, Windfury, and Frostbrand. Your +4 weapon damage enchant can keep its blue glow while the shaman effect plays around the same weapon.
