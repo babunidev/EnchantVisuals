@@ -6,7 +6,7 @@ Keep your permanent weapon enchant glow **and** your shaman imbue visible at the
 
 A small cosmetic client mod for the supported **World of Warcraft 1.12.1 executable**, supporting Rockbiter, Flametongue, Windfury, and Frostbrand. Your +4 weapon damage enchant can keep its blue glow while the shaman effect plays around the same weapon.
 
-**[Download the latest release](https://github.com/Morkahja/EnchantVisuals/releases/latest)**
+**[Download EnchantVisuals v1.0.1](https://github.com/babunidev/EnchantVisuals/releases/tag/v1.0.1)**
 
 ## In game
 
@@ -68,7 +68,7 @@ Natural imbue expiration has not yet been visually checked in game because the t
 
 Weapons whose built-in visual takes priority retain the original priority rule. Non-shaman temporary enchants are outside this mod's scope.
 
-Earlier development builds had reported login/loading failures whose cause was not conclusively established. This release rebuilds that implementation with neutral names; the rebuilt binary has not yet been validated in game. If you encounter a problem, disable the mod, restart, and report your client version and reproduction steps in [Issues](https://github.com/Morkahja/EnchantVisuals/issues).
+Earlier development builds had reported login/loading failures whose cause was not conclusively established. This release rebuilds that implementation with neutral names; the rebuilt binary has not yet been validated in game. If you encounter a problem, disable the mod, restart, and report your client version and reproduction steps in [Issues](https://github.com/babunidev/EnchantVisuals/issues).
 
 Diagnostic logging remains enabled in `EnchantVisualsDiagnostic.log`, capped at 20,000 trace events per game session. Review logs before sharing them.
 
@@ -99,10 +99,22 @@ Original mod code is MIT licensed; see [LICENSE](LICENSE). [MinHook](https://git
 
 Screenshots depict World of Warcraft; game artwork belongs to its respective owners. This is an independent community project.
 
+## Developer, safety and portfolio notes
+
+**This is a native-process DLL, not a WoW Lua addon.** Use it only with an independently verified, supported 32-bit Windows client and an existing, functioning DLL-loading launcher that uses `dlls.txt`. The installer itself expects an existing `dlls.txt`; it does not install or configure a launcher. A modified/different WoW executable fails the installer SHA-256 check, while the DLL itself checks a fixed image base and five runtime code signatures before installing hooks. Those safeguards reduce accidental mismatches but are not proof of general binary safety or of compatibility with every custom server.
+
+**Installation/uninstallation deserves a backup and a fully closed game.** The PowerShell installer maintains unrelated `dlls.txt` entries and copies existing recognized mod/configuration/loader files into a backup folder before making supported changes. It recognizes prior builds by hash, not merely a filename. Uninstall removes recognized mod-owned DLL/INI and loader references; it does not delete diagnostic logs or roll back arbitrary unrelated changes. If `EnableHooks=0` is preserved from an earlier configuration, an upgrade may leave hooks intentionally disabled.
+
+**What is tested?** The initial **September 11, 2026** build was *reported* tested in game for all four Shaman effects, repeated logins, effect replacement and sheathing. The later **September 18 v1.0.1 rebuilt binary** has a published release whose notes report successful x86 compilation, visual-pair tests and installer tests, but explicitly say the rebuilt DLL still needs new in-game validation. This October 27 documentation audit neither executed the DLL nor independently ran any compiler, test, installer or game-client verification. Equipment swaps and natural imbue expiration are still open visual checks.
+
+**Boundaries and privacy:** The mod changes what the local client renders, not stats or other players' installations. Its diagnostic log can contain pointer addresses, process/thread identifiers and timing data; inspect and redact logs before publishing or sending them. The source is [MIT licensed](LICENSE) under Babuni.dev's notice; bundled [MinHook 1.3.4](vendor/minhook-1.3.4/LICENSE.txt) retains its separate BSD-family license and the screenshots depict World of Warcraft assets owned by their rightsholders.
+
 ## Development documentation
 
-- [Concept](CONCEPT.md) · [Roadmap](ROADMAP.md) · [Changelog](CHANGELOG.md)
-- [Architecture](docs/ARCHITECTURE.md) · [Design evidence](docs/DECISIONS.md) · [Development journal](docs/DEVLOG.md)
-- [AI collaborator rules](AGENTS.md)
+- [Creative concept](CONCEPT.md) · [Verification roadmap](ROADMAP.md) · [Git and release changelog](CHANGELOG.md)
+- [C++ and installer architecture](docs/ARCHITECTURE.md) · [Visual design](docs/DESIGN.md) · [Assets and packaging](docs/CONTENT.md)
+- [Decisions and tradeoffs](docs/DECISIONS.md) · [Narrative development journal](docs/DEVLOG.md)
+- [Human–AI collaboration](docs/AI_COLLABORATION.md) · [Contributor rules](AGENTS.md)
 
-The journal distinguishes source-based reconstruction, author direction, AI assistance, and independently verified behavior.
+**Original creative direction:** Babuni.dev. **Current audit contribution:** source/history analysis and documentation only, without modifying the mod or the MIT/MinHook licenses.
+
