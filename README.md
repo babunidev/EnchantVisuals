@@ -1,6 +1,6 @@
 # Enchant Visuals
 
-**Author:** Babuni.dev
+**Creative:** Babuni
 
 Keep your permanent weapon enchant glow **and** your shaman imbue visible at the same time.
 

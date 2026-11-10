@@ -1,6 +1,6 @@
-# EnchantVisuals — creative and technical development journal
+# EnchantVisuals — development journal
 
-**Creator and creative director:** Babuni.dev  
+**Creative:** Babuni  
 **Retrospective prepared:** October 27, 2026 from live Git tree, two substantive September commits, original/current README, C++/PowerShell source, published releases, original screenshots and licenses. No missing original chats or uncommitted prototypes are reconstructed as fact.
 
 ## Wanting two colors to coexist
