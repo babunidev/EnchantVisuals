@@ -1,7 +1,7 @@
 # EnchantVisuals — developer and AI agent rules
 
-**Human creative / final decision-maker:** Babuni.  
-**Current release:** v1.0.1, exact supported **32-bit WoW 1.12.1 (5875)** build.  
+**Human creative / final decision-maker:** Babuni.
+**Current release:** v1.0.1, exact supported **32-bit WoW 1.12.1 (5875)** build.
 **Licensing:** original code [MIT](LICENSE); vendored MinHook [BSD-family](vendor/minhook-1.3.4/LICENSE.txt).
 
 ## Preserve the authored visual idea
@@ -31,4 +31,4 @@ Update README, CONCEPT, ROADMAP, CHANGELOG, AGENTS, docs/ARCHITECTURE, docs/DESI
 
 ## Repository-local documentation standard
 
-Before writing or changing project documentation, read [docs/DOCUMENTATION.md](docs/DOCUMENTATION.md). These rules travel with this repository and do not depend on the babuni.dev ChatGPT Project. Preserve all project-specific technical, creative, canon, safety, licensing, and historical rules in this file; follow the linked standard for public first-person narrative, human–AI attribution, concise development journals, decision records, and evidence-based verification. **Babuni** is the human creative; **babuni.dev** is the website/portfolio, not the person. Preserve third-party credits and historical legal notices. References above to a dated “documentation-only audit” describe that past task, not a permanent ban on later authorized implementation.
+Follow [the documentation standard](docs/DOCUMENTATION.md) for first-person author voice throughout project documentation, factual changelogs, and naming the AI tool and verified model for each contribution. These rules travel with this repository and do not depend on the babuni.dev ChatGPT Project. Preserve all project-specific technical, creative, canon, safety, licensing, and historical rules in this file; follow the linked standard for public first-person narrative, human–AI attribution, concise development journals, decision records, and evidence-based verification. **Babuni** is the human creative; **babuni.dev** is the website/portfolio, not the person. Preserve third-party credits and historical legal notices. References above to a dated “documentation-only audit” describe that past task, not a permanent ban on later authorized implementation.

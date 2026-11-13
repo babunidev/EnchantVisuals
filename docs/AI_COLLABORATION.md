@@ -1,5 +1,7 @@
 # EnchantVisuals — human–AI collaboration and technical provenance
 
+Follow [the documentation standard](DOCUMENTATION.md) for first-person author voice throughout project documentation, factual changelogs, and naming the AI tool and verified model for each contribution.
+
 **Project creator and final creative authority:** Babuni.dev.
 
 ## Creative attribution
